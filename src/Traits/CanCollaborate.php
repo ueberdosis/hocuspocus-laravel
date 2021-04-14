@@ -23,7 +23,7 @@ trait CanCollaborate
 
     public function collaborator()
     {
-        return $this->morphOne(Collaborator::class);
+        return $this->morphOne(Collaborator::class, 'model');
     }
 
     /**

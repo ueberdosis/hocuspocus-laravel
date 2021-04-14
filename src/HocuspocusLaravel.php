@@ -15,7 +15,7 @@ use Illuminate\Http\Response;
 use ReflectionClass;
 use ReflectionException;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
-use Ueberdosis\HocuspocusLaravel\Contracts\IsCollaborative;
+use Ueberdosis\HocuspocusLaravel\Contracts\Collaborative;
 use Ueberdosis\HocuspocusLaravel\Jobs\Connect;
 use Ueberdosis\HocuspocusLaravel\Jobs\Disconnect;
 use Ueberdosis\HocuspocusLaravel\Models\Collaborator;
@@ -26,14 +26,6 @@ class HocuspocusLaravel
     const EVENT_ON_CONNECT = 'connect';
     const EVENT_ON_CREATE_DOCUMENT = 'create';
     const EVENT_ON_DISCONNECT = 'disconnect';
-
-    /**
-     * Register the routes.
-     */
-    public function routes(): void
-    {
-        Route::post(config('hocuspocus-laravel.route'), [self::class, 'handleWebhook']);
-    }
 
     /**
      * Handle an incoming webhook.
@@ -68,11 +60,11 @@ class HocuspocusLaravel
     /**
      * Handle onConnect webhook
      * @param array $payload
-     * @param IsCollaborative $document
+     * @param Collaborative $document
      * @param Authenticatable $user
      * @return JsonResponse
      */
-    protected function handleOnConnect(array $payload, IsCollaborative $document, Authenticatable $user): JsonResponse
+    protected function handleOnConnect(array $payload, Collaborative $document, Authenticatable $user): JsonResponse
     {
         dispatch(new Connect($user, $document));
 
@@ -84,11 +76,11 @@ class HocuspocusLaravel
     /**
      * Handle onDisconnect webhook
      * @param array $payload
-     * @param IsCollaborative $document
+     * @param Collaborative $document
      * @param Authenticatable $user
      * @return Response
      */
-    protected function handleOnDisconnect(array $payload, IsCollaborative $document, Authenticatable $user): Response
+    protected function handleOnDisconnect(array $payload, Collaborative $document, Authenticatable $user): Response
     {
         dispatch(new Disconnect($user, $document));
 
@@ -98,9 +90,11 @@ class HocuspocusLaravel
     /**
      * Handle onCreate webhook
      * @param array $payload
+     * @param Collaborative $document
+     * @param Authenticatable $user
      * @return Response
      */
-    protected function handleOnCreate(array $payload): Response
+    protected function handleOnCreate(array $payload, Collaborative $document, Authenticatable $user): Response
     {
         // TODO
 
@@ -151,7 +145,7 @@ class HocuspocusLaravel
             throw new Exception("Invalid document name format \"{$name}\"");
         }
 
-        $interface = IsCollaborative::class;
+        $interface = Collaborative::class;
         $reflection = new ReflectionClass($parts[0]);
 
         if (!$reflection->implementsInterface($interface)) {

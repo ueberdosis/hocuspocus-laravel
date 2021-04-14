@@ -4,7 +4,7 @@
 namespace Ueberdosis\HocuspocusLaravel\Contracts;
 
 
-interface IsCollaborative
+interface Collaborative
 {
 
 }

@@ -17,6 +17,7 @@ class HocuspocusLaravelServiceProvider extends PackageServiceProvider
         $package
             ->name('hocuspocus-laravel')
             ->hasConfigFile()
-            ->hasMigration('create_hocuspocus_laravel_table');
+            ->hasRoute('api')
+            ->hasMigrations(['create_collaborators_table', 'create_documents_table']);
     }
 }

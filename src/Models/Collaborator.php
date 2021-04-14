@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Ueberdosis\HocuspocusLaravel\Contracts\IsCollaborative;
+use Ueberdosis\HocuspocusLaravel\Contracts\Collaborative;
 
 class Collaborator extends Model
 {
@@ -34,18 +34,18 @@ class Collaborator extends Model
 
     /**
      * Connect the user from to given collaborative document
-     * @param IsCollaborative $document
+     * @param Collaborative $document
      */
-    public function connectTo(IsCollaborative $document): void
+    public function connectTo(Collaborative $document): void
     {
         // TODO: update/create pivot table
     }
 
     /**
      * Disconnect the user from the given collaborative document
-     * @param IsCollaborative $document
+     * @param Collaborative $document
      */
-    public function disconnectFrom(IsCollaborative $document): void
+    public function disconnectFrom(Collaborative $document): void
     {
         // TODO: update pivot
     }

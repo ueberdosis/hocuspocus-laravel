@@ -10,7 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Ueberdosis\HocuspocusLaravel\Contracts\IsCollaborative;
+use Ueberdosis\HocuspocusLaravel\Contracts\Collaborative;
 
 class Connect implements ShouldQueue
 {
@@ -18,9 +18,9 @@ class Connect implements ShouldQueue
 
     protected Authenticatable $user;
 
-    protected IsCollaborative $document;
+    protected Collaborative $document;
 
-    public function __construct(Authenticatable $user, IsCollaborative $document)
+    public function __construct(Authenticatable $user, Collaborative $document)
     {
         $this->user = $user;
         $this->document = $document;
