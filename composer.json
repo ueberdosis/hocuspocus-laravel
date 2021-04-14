@@ -1,0 +1,53 @@
+{
+    "name": "ueberdosis/hocuspocus-laravel",
+    "description": "Integrates hocuspocus into Laravel with a few clicks",
+    "keywords": [
+        "laravel",
+        "hocuspocus"
+    ],
+    "homepage": "https://github.com/ueberdosis/hocuspocus-laravel",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kris Siepert",
+            "email": "m@kris.cool",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "illuminate/contracts": "^7.0",
+        "spatie/laravel-package-tools": "^1.4.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ueberdosis\\HocuspocusLaravel\\": "src",
+            "Ueberdosis\\HocuspocusLaravel\\Database\\Factories\\": "database/factories"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ueberdosis\\HocuspocusLaravel\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "psalm": "vendor/bin/psalm",
+        "test": "./vendor/bin/testbench package:test --parallel --no-coverage",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ueberdosis\\HocuspocusLaravel\\HocuspocusLaravelServiceProvider"
+            ],
+            "aliases": {
+                "HocuspocusLaravel": "Ueberdosis\\HocuspocusLaravel\\HocuspocusLaravelFacade"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
