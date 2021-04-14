@@ -1,4 +1,4 @@
-# hocuspocus-laravel
+# hocuspocus for Laravel
 
 > Integrates hocuspocus into Laravel with a few clicks
 
@@ -77,7 +77,7 @@ Configure a random secret key in your `.env`:
 HOCUSPOCUS_SECRET="459824aaffa928e05f5b1caec411ae5f"
 ```
 
-Finally setup hocuspocus with the webhook extension:
+Finally set up hocuspocus with the webhook extension:
 
 ```typescript
 import { Server } from '@hocuspocus/server'
