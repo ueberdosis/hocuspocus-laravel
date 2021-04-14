@@ -20,6 +20,11 @@ trait IsCollaborative
         return $this->morphMany(Document::class, 'model');
     }
 
+    public function getCollaborativeAttributes(): array
+    {
+        return $this->collaborativeAttributes;
+    }
+
     public function getCollaborationDocumentName(): string
     {
         return get_called_class() . ":" . $this->id;

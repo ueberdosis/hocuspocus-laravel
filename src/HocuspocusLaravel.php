@@ -16,6 +16,7 @@ use ReflectionClass;
 use ReflectionException;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use Ueberdosis\HocuspocusLaravel\Contracts\Collaborative;
+use Ueberdosis\HocuspocusLaravel\Jobs\Change;
 use Ueberdosis\HocuspocusLaravel\Jobs\Connect;
 use Ueberdosis\HocuspocusLaravel\Jobs\Disconnect;
 use Ueberdosis\HocuspocusLaravel\Models\Collaborator;
@@ -92,23 +93,29 @@ class HocuspocusLaravel
      * @param array $payload
      * @param Collaborative $document
      * @param Authenticatable $user
-     * @return Response
+     * @return JsonResponse
      */
-    protected function handleOnCreate(array $payload, Collaborative $document, Authenticatable $user): Response
+    protected function handleOnCreate(array $payload, Collaborative $document, Authenticatable $user): JsonResponse
     {
-        // TODO
+        $data = collect($document->getCollaborativeAttributes())->mapWithKeys(function ($attribute) use ($document) {
+            return [$attribute, $document->{$attribute}];
+        });
 
-        return response();
+        return response()->json(
+            $data->toJson()
+        );
     }
 
     /**
      * Handle onChange webhook
      * @param array $payload
+     * @param Collaborative $document
+     * @param Authenticatable $user
      * @return Response
      */
-    protected function handleOnChange(array $payload): Response
+    protected function handleOnChange(array $payload, Collaborative $document, Authenticatable $user): Response
     {
-        // TODO
+        dispatch(new Change($user, $document, $payload['document']));
 
         return response();
     }
