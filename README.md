@@ -1,4 +1,6 @@
-# Integrates hocuspocus into Laravel with a few clicks
+# hocuspocus-laravel
+
+> Integrates hocuspocus into Laravel with a few clicks
 
 ## Installation
 
@@ -11,13 +13,13 @@ composer require ueberdosis/hocuspocus_laravel
 You can publish and run the migrations with:
 
 ```bash
-php artisan vendor:publish --provider="Ueberdosis\HocuspocusLaravel\HocuspocusLaravelServiceProvider" --tag="hocuspocus_laravel-migrations"
+php artisan vendor:publish --provider="Ueberdosis\HocuspocusLaravel\HocuspocusLaravelServiceProvider" --tag="hocuspocus-laravel-migrations"
 php artisan migrate
 ```
 
 You can publish the config file with:
 ```bash
-php artisan vendor:publish --provider="Ueberdosis\HocuspocusLaravel\HocuspocusLaravelServiceProvider" --tag="hocuspocus_laravel-config"
+php artisan vendor:publish --provider="Ueberdosis\HocuspocusLaravel\HocuspocusLaravelServiceProvider" --tag="hocuspocus-laravel-config"
 ```
 
 This is the contents of the published config file:
@@ -26,31 +28,6 @@ This is the contents of the published config file:
 return [
 ];
 ```
-
-## Usage
-
-```php
-$hocuspocus_laravel = new Ueberdosis\HocuspocusLaravel();
-echo $hocuspocus_laravel->echoPhrase('Hello, Spatie!');
-```
-
-## Testing
-
-```bash
-composer test
-```
-
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
-
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
 
 ## Credits
 
