@@ -23,4 +23,11 @@ class Document extends Model
     {
         return $this->belongsTo(Collaborator::class);
     }
+
+    public function scopeByModel($query, $object)
+    {
+        $query
+            ->where('model_type', get_class($object))
+            ->where('model_id', $object->id);
+    }
 }

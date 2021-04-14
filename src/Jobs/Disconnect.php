@@ -28,6 +28,6 @@ class Disconnect implements ShouldQueue
 
     public function handle()
     {
-        $this->user->disconnectFrom($this->document);
+        $this->user->collaborator->disconnectFrom($this->document);
     }
 }

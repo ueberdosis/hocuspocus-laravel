@@ -28,6 +28,6 @@ class Connect implements ShouldQueue
 
     public function handle()
     {
-        $this->user->connectTo($this->document);
+        $this->user->collaborator->connectTo($this->document);
     }
 }

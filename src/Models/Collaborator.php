@@ -38,7 +38,10 @@ class Collaborator extends Model
      */
     public function connectTo(Collaborative $document): void
     {
-        // TODO: update/create pivot table
+        $this->getOrCreateDocument($document)->update([
+            'connected' => true,
+            'connected_at' => now(),
+        ]);
     }
 
     /**
@@ -47,7 +50,30 @@ class Collaborator extends Model
      */
     public function disconnectFrom(Collaborative $document): void
     {
-        // TODO: update pivot
+        $this->getOrCreateDocument($document)->update([
+            'connected' => false,
+        ]);
+    }
+
+    /**
+     * Get or create the document pivot table entry
+     * @param Collaborative $document
+     * @return Document
+     */
+    protected function getOrCreateDocument(Collaborative $document): Document
+    {
+        $pivot = $this->documents()->byModel($document)->first();
+
+        if (!$pivot) {
+            $pivot = $this->documents()->create([
+                'model_type' => get_class($document),
+                'model_id' => $document->id,
+                'connected' => true,
+                'connected_at' => now(),
+            ]);
+        }
+
+        return $pivot;
     }
 
     /**
