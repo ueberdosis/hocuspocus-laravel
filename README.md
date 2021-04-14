@@ -7,7 +7,7 @@
 You can install the package via composer:
 
 ```bash
-composer require ueberdosis/hocuspocus_laravel
+composer require ueberdosis/hocuspocus-laravel
 ```
 
 You can publish and run the migrations with:
