@@ -87,13 +87,12 @@ class HocuspocusLaravel
      * @param array $payload
      * @param Collaborative $document
      * @param Authenticatable $user
-     * @return Response
      */
-    protected function handleOnDisconnect(array $payload, Collaborative $document, Authenticatable $user): Response
+    protected function handleOnDisconnect(array $payload, Collaborative $document, Authenticatable $user)
     {
         dispatch(new Disconnect($user, $document));
 
-        return response();
+        return response('handled');
     }
 
     /**
@@ -119,13 +118,12 @@ class HocuspocusLaravel
      * @param array $payload
      * @param Collaborative $document
      * @param Authenticatable $user
-     * @return Response
      */
-    protected function handleOnChange(array $payload, Collaborative $document, Authenticatable $user): Response
+    protected function handleOnChange(array $payload, Collaborative $document, Authenticatable $user)
     {
         dispatch(new Change($user, $document, $payload['document']));
 
-        return response();
+        return response('handled');
     }
 
     /**
