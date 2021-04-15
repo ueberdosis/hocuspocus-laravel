@@ -106,7 +106,7 @@ class HocuspocusLaravel
     protected function handleOnCreate(array $payload, Collaborative $document, Authenticatable $user): JsonResponse
     {
         $data = collect($document->getCollaborativeAttributes())->mapWithKeys(function ($attribute) use ($document) {
-            return [$attribute, $document->{$attribute}];
+            return [$attribute => $document->{$attribute}];
         });
 
         return response()->json(
