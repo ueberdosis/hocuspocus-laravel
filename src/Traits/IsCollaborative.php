@@ -8,8 +8,6 @@ use Ueberdosis\HocuspocusLaravel\Models\Document;
 
 trait IsCollaborative
 {
-    protected array $collaborativeAttributes = [];
-
     public static function bootIsCollaborative()
     {
         static::deleted(fn($model) => $model->documents->each->delete());
@@ -22,7 +20,7 @@ trait IsCollaborative
 
     public function getCollaborativeAttributes(): array
     {
-        return $this->collaborativeAttributes;
+        return $this->collaborativeAttributes ?? [];
     }
 
     public function getCollaborationDocumentName(): string

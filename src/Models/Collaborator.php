@@ -20,6 +20,8 @@ class Collaborator extends Model
     public static function boot()
     {
         static::deleted(fn($collaborator) => $collaborator->documents->each->delete());
+
+        parent::boot();
     }
 
     public function model(): MorphTo

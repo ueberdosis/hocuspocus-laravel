@@ -46,8 +46,8 @@ trait CanCollaborate
      */
     public function createNewCollaborator(): void
     {
-        $this->collaborator()->create([
+        $this->setRelation('collaborator', $this->collaborator()->create([
             'token' => Collaborator::generateToken(),
-        ]);
+        ]));
     }
 }
