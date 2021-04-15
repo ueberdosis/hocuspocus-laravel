@@ -4,15 +4,13 @@ namespace Ueberdosis\HocuspocusLaravel;
 
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Routing\ResponseFactory;
 use ReflectionClass;
 use ReflectionException;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
@@ -133,9 +131,10 @@ class HocuspocusLaravel
     /**
      * Get the user by the given request parameters.
      * @param array $requestParameters
+     * @return Authenticatable
      * @throws AuthenticationException
      */
-    protected function getUser(array $requestParameters)
+    protected function getUser(array $requestParameters): Authenticatable
     {
         $token = $requestParameters[config('hocuspocus-laravel.access_token_parameter')] ?? false;
 
@@ -149,6 +148,7 @@ class HocuspocusLaravel
     /**
      * Get the document by the given name.
      * @param string $name
+     * @return mixed
      * @throws ReflectionException|Exception|ModelNotFoundException
      */
     protected function getDocument(string $name)
