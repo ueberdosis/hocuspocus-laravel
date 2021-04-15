@@ -4,6 +4,7 @@
 namespace Ueberdosis\HocuspocusLaravel\Traits;
 
 
+use Illuminate\Support\Collection;
 use Ueberdosis\HocuspocusLaravel\Models\Document;
 
 trait IsCollaborative
@@ -16,6 +17,15 @@ trait IsCollaborative
     public function documents()
     {
         return $this->morphMany(Document::class, 'model');
+    }
+
+    public function getConnectedUsers(): Collection
+    {
+        return $this->documents()
+            ->where('connected', true)
+            ->with('collaborator.model')
+            ->get()
+            ->pluck('collaborator.model');
     }
 
     public function getCollaborativeAttributes(): array
