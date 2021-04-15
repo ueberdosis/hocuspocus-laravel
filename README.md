@@ -52,6 +52,24 @@ class TextDocument extends Model implements Collaborative {
 }
 ```
 
+Add policies to your app that handle authorization for your models. The name of the policy method is configurable inside the `hocuspocus-laravel.php` config file. An example:
+
+```php
+use App\Models\TextDocument;
+use App\Models\User;
+use Illuminate\Auth\Access\HandlesAuthorization;
+
+class TextDocumentPolicy
+{
+    use HandlesAuthorization;
+
+    public function update(User $user, TextDocument $document)
+    {
+        return true;
+    }
+}
+```
+
 In the frontend, add the `collaborationAccessToken` and `collaborationDocumentName` to your WebsocketProvider:
 
 ```blade
