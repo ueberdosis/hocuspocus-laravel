@@ -12,6 +12,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Routing\ResponseFactory;
 use ReflectionClass;
 use ReflectionException;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
@@ -31,30 +32,39 @@ class HocuspocusLaravel
     /**
      * Handle an incoming webhook.
      * @param Request $request
-     * @return Response
      * @throws ReflectionException|AuthorizationException|AuthenticationException
      */
-    public function handleWebhook(Request $request): Response
+    public function handleWebhook(Request $request)
     {
         if (!$this->verifySignature($request)) {
             throw new BadRequestException('Invalid signature');
         }
 
-        if (!in_array($request->event, config('hocuspocus-laravel.events'))) {
+        $json = json_decode($request->getContent() ?: '{}', true);
+
+        if (
+            !isset($json['event'])
+            || !isset($json['payload']['requestParameters'])
+            || !isset($json['payload']['documentName'])
+        ) {
+            throw new BadRequestException('Invalid payload');
+        }
+
+        if (!in_array($json['event'], config('hocuspocus-laravel.events'))) {
             return response();
         }
 
-        $user = $this->getUser($request->payload['requestParameter']);
-        $document = $this->getDocument($request->payload['documentName']);
+        $user = $this->getUser($json['payload']['requestParameters']);
+        $document = $this->getDocument($json['payload']['documentName']);
 
         if (!$user->can(config('hocuspocus-laravel.policy_method_name'), $document)) {
             throw new AuthorizationException("User is not allowed to access this document");
         }
 
-        $handler = "handleOn{$request->event}";
+        $handler = "handleOn{$json['event']}";
 
         if (method_exists($this, $handler)) {
-            return $this->$handler((array)$request->payload, $document, $user);
+            return $this->$handler($json['payload'], $document, $user);
         }
     }
 
@@ -123,10 +133,9 @@ class HocuspocusLaravel
     /**
      * Get the user by the given request parameters.
      * @param array $requestParameters
-     * @return Authorizable
      * @throws AuthenticationException
      */
-    protected function getUser(array $requestParameters): Authorizable
+    protected function getUser(array $requestParameters)
     {
         $token = $requestParameters[config('hocuspocus-laravel.access_token_parameter')] ?? false;
 
@@ -140,13 +149,12 @@ class HocuspocusLaravel
     /**
      * Get the document by the given name.
      * @param string $name
-     * @return Model
      * @throws ReflectionException|Exception|ModelNotFoundException
      */
-    protected function getDocument(string $name): Model
+    protected function getDocument(string $name)
     {
         // class name colon id e.g. "App\Models\TextDocument:1"
-        $parts = explode(':', $name);
+        $parts = explode(':', urldecode($name));
 
         if (count($parts) != 2) {
             throw new Exception("Invalid document name format \"{$name}\"");
@@ -163,7 +171,7 @@ class HocuspocusLaravel
             throw new Exception("\"{$parts[0]}\" is not an Eloquent Model");
         }
 
-        return call_user_func([$parts[0], 'findOrFail'], [$parts[1]]);
+        return call_user_func([$parts[0], 'findOrFail'], $parts[1]);
     }
 
     /**

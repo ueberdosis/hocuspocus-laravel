@@ -25,6 +25,6 @@ trait IsCollaborative
 
     public function getCollaborationDocumentName(): string
     {
-        return get_called_class() . ":" . $this->id;
+        return urlencode(get_called_class() . ":" . $this->id);
     }
 }
