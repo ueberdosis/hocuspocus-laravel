@@ -1,6 +1,6 @@
-# hocuspocus for Laravel
+# Hocuspocus for Laravel
 
-> Integrates hocuspocus into Laravel with a few clicks
+Integrates Hocuspocus into Laravel with a few clicks
 
 ## Installation
 
@@ -120,6 +120,7 @@ server.listen()
 
 ## Credits
 
+- [Hans Pagel](https://github.com/hanspagel)
 - [Kris Siepert](https://github.com/kriskbx)
 - [All Contributors](../../contributors)
 
