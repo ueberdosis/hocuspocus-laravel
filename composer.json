@@ -9,6 +9,11 @@
     "license": "MIT",
     "authors": [
         {
+            "name": "Hans Pagel",
+            "email": "humans@tiptap.dev",
+            "role": "Developer"
+        },
+        {
             "name": "Kris Siepert",
             "email": "m@kris.cool",
             "role": "Developer"
