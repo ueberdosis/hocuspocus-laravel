@@ -1,6 +1,6 @@
 <?php
 
-namespace Ueberdosis\HocuspocusLaravel;
+namespace Hocuspocus;
 
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -14,11 +14,11 @@ use Illuminate\Http\Response;
 use ReflectionClass;
 use ReflectionException;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
-use Ueberdosis\HocuspocusLaravel\Contracts\Collaborative;
-use Ueberdosis\HocuspocusLaravel\Jobs\Change;
-use Ueberdosis\HocuspocusLaravel\Jobs\Connect;
-use Ueberdosis\HocuspocusLaravel\Jobs\Disconnect;
-use Ueberdosis\HocuspocusLaravel\Models\Collaborator;
+use Hocuspocus\Contracts\Collaborative;
+use Hocuspocus\Jobs\Change;
+use Hocuspocus\Jobs\Connect;
+use Hocuspocus\Jobs\Disconnect;
+use Hocuspocus\Models\Collaborator;
 
 class HocuspocusLaravel
 {

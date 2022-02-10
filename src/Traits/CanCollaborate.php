@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Ueberdosis\HocuspocusLaravel\Traits;
+namespace Hocuspocus\Traits;
 
 
 use Exception;
 use Illuminate\Contracts\Auth\Access\Authorizable;
 use ReflectionClass;
-use Ueberdosis\HocuspocusLaravel\Models\Collaborator;
+use Hocuspocus\Models\Collaborator;
 
 trait CanCollaborate
 {

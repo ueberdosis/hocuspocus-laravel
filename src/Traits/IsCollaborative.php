@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Ueberdosis\HocuspocusLaravel\Traits;
+namespace Hocuspocus\Traits;
 
 
 use Illuminate\Support\Collection;
-use Ueberdosis\HocuspocusLaravel\Models\Document;
+use Hocuspocus\Models\Document;
 
 trait IsCollaborative
 {

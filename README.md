@@ -13,14 +13,14 @@ composer require ueberdosis/hocuspocus-laravel
 You can publish and run the migrations with:
 
 ```bash
-php artisan vendor:publish --provider="Ueberdosis\HocuspocusLaravel\HocuspocusLaravelServiceProvider" --tag="hocuspocus-laravel-migrations"
+php artisan vendor:publish --provider="Hocuspocus\HocuspocusServiceProvider" --tag="hocuspocus-laravel-migrations"
 php artisan migrate
 ```
 
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --provider="Ueberdosis\HocuspocusLaravel\HocuspocusLaravelServiceProvider" --tag="hocuspocus-laravel-config"
+php artisan vendor:publish --provider="Hocuspocus\HocuspocusServiceProvider" --tag="hocuspocus-laravel-config"
 ```
 
 ## Usage
@@ -29,7 +29,7 @@ Add the `CanCollaborate` trait to your user model:
 
 ```php
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Ueberdosis\HocuspocusLaravel\Traits\CanCollaborate;
+use Hocuspocus\Traits\CanCollaborate;
 
 class User extends Authenticatable {
     use CanCollaborate;
@@ -40,12 +40,12 @@ Add the `Collaborative` interface and `IsCollaborative` trait to your documents 
 
 ```php
 use Illuminate\Database\Eloquent\Model;
-use Ueberdosis\HocuspocusLaravel\Contracts\Collaborative;
-use Ueberdosis\HocuspocusLaravel\Traits\IsCollaborative;
+use Hocuspocus\Contracts\Collaborative;
+use Hocuspocus\Traits\IsCollaborative;
 
 class TextDocument extends Model implements Collaborative {
     use IsCollaborative;
-    
+
     protected array $collaborativeAttributes = [
         'title', 'body',
     ];
@@ -107,9 +107,9 @@ const server = Server.configure({
     new Webhook({
       // url to your application
       url: 'https://example.com/api/documents',
-      // the same secret you configured earlier in your .env  
+      // the same secret you configured earlier in your .env
       secret: '459824aaffa928e05f5b1caec411ae5f',
-        
+
       transformer: TiptapTransformer,
     }),
   ],

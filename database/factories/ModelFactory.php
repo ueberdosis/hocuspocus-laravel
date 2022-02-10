@@ -1,6 +1,6 @@
 <?php
 
-namespace Ueberdosis\HocuspocusLaravel\Database\Factories;
+namespace Hocuspocus\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 

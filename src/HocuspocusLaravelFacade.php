@@ -1,11 +1,11 @@
 <?php
 
-namespace Ueberdosis\HocuspocusLaravel;
+namespace Hocuspocus;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Ueberdosis\HocuspocusLaravel\HocuspocusLaravel
+ * @see \Hocuspocus\HocuspocusLaravel
  */
 class HocuspocusLaravelFacade extends Facade
 {

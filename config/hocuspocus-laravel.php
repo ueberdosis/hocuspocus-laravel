@@ -11,10 +11,10 @@ return [
      *
      */
     'events' => [
-        \Ueberdosis\HocuspocusLaravel\HocuspocusLaravel::EVENT_ON_CHANGE,
-        \Ueberdosis\HocuspocusLaravel\HocuspocusLaravel::EVENT_ON_CONNECT,
-        \Ueberdosis\HocuspocusLaravel\HocuspocusLaravel::EVENT_ON_DISCONNECT,
-        \Ueberdosis\HocuspocusLaravel\HocuspocusLaravel::EVENT_ON_CREATE_DOCUMENT,
+        \Hocuspocus\HocuspocusLaravel::EVENT_ON_CHANGE,
+        \Hocuspocus\HocuspocusLaravel::EVENT_ON_CONNECT,
+        \Hocuspocus\HocuspocusLaravel::EVENT_ON_DISCONNECT,
+        \Hocuspocus\HocuspocusLaravel::EVENT_ON_CREATE_DOCUMENT,
     ],
 
     /*

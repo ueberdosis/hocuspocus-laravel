@@ -26,13 +26,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Ueberdosis\\HocuspocusLaravel\\": "src",
-            "Ueberdosis\\HocuspocusLaravel\\Database\\Factories\\": "database/factories"
+            "Hocuspocus\\": "src",
+            "Hocuspocus\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Ueberdosis\\HocuspocusLaravel\\Tests\\": "tests"
+            "Hocuspocus\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -46,10 +46,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Ueberdosis\\HocuspocusLaravel\\HocuspocusLaravelServiceProvider"
+                "Hocuspocus\\HocuspocusServiceProvider"
             ],
             "aliases": {
-                "HocuspocusLaravel": "Ueberdosis\\HocuspocusLaravel\\HocuspocusLaravelFacade"
+                "Hocuspocus": "Hocuspocus\\HocuspocusFacade"
             }
         }
     },

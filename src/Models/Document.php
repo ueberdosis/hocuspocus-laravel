@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Ueberdosis\HocuspocusLaravel\Models;
+namespace Hocuspocus\Models;
 
 
 use Illuminate\Database\Eloquent\Model;

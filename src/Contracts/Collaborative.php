@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Ueberdosis\HocuspocusLaravel\Contracts;
+namespace Hocuspocus\Contracts;
 
 
 interface Collaborative

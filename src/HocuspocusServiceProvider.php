@@ -1,11 +1,11 @@
 <?php
 
-namespace Ueberdosis\HocuspocusLaravel;
+namespace Hocuspocus;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class HocuspocusLaravelServiceProvider extends PackageServiceProvider
+class HocuspocusServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {

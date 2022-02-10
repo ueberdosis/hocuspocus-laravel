@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Ueberdosis\HocuspocusLaravel\Models;
+namespace Hocuspocus\Models;
 
 
 use Exception;
@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Ueberdosis\HocuspocusLaravel\Contracts\Collaborative;
+use Hocuspocus\Contracts\Collaborative;
 
 class Collaborator extends Model
 {
