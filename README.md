@@ -1,6 +1,6 @@
 # Hocuspocus for Laravel
 
-Integrates Hocuspocus into Laravel with a few clicks
+Integrates Hocuspocus into Laravel with a few clicks.
 
 ## Installation
 
