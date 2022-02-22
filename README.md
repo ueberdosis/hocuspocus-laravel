@@ -1,9 +1,7 @@
 # Hocuspocus for Laravel
-
-Integrates Hocuspocus into Laravel with a few clicks.
+Seamlessly integrates a [Hocuspocus](https://www.hocuspocus.dev) backend with Laravel.
 
 ## Installation
-
 You can install the package via composer:
 
 ```bash
@@ -70,22 +68,26 @@ class TextDocumentPolicy
 }
 ```
 
-In the frontend, add the `collaborationAccessToken` and `collaborationDocumentName` to your WebsocketProvider:
+In the frontend, add the `collaborationAccessToken` and `collaborationDocumentName` to your WebSocket provider:
 
 ```blade
 <script>
-    window.collaborationAccessToken = '{{ optional(auth()->user())->getCollaborationAccessToken() }}';
-    window.collaborationDocumentName = '{{ $yourTextDocument->getCollaborationDocumentName() }}'
+  window.collaborationAccessToken = '{{ optional(auth()->user())->getCollaborationAccessToken() }}';
+  window.collaborationDocumentName = '{{ $yourTextDocument->getCollaborationDocumentName() }}'
 </script>
 ```
 
-```typescript
+```js
+import { HocuspocusProvider } from '@hocuspocus/provider'
 import * as Y from 'yjs'
-import { WebsocketProvider } from 'y-websocket'
 
-const doc = new Y.Doc()
-const wsProvider = new WebsocketProvider('ws://localhost:1234', collaborationDocumentName, doc, {
-    params: { access_token: collaborationAccessToken },
+const provider = new HocuspocusProvider({
+  document: new Y.Doc(),
+  url: 'ws://localhost:1234',
+  name: window.collaborationDocumentName,
+  parameters: {
+    access_token: window.collaborationAccessToken,
+  },
 })
 ```
 
@@ -95,9 +97,9 @@ Configure a random secret key in your `.env`:
 HOCUSPOCUS_SECRET="459824aaffa928e05f5b1caec411ae5f"
 ```
 
-Finally set up hocuspocus with the webhook extension:
+Finally set up Hocuspocus with the webhook extension:
 
-```typescript
+```js
 import { Server } from '@hocuspocus/server'
 import { Webhook, Events } from '@hocuspocus/extension-webhook'
 import { TiptapTransformer } from '@hocuspocus/transformer'
@@ -119,11 +121,9 @@ server.listen()
 ```
 
 ## Credits
-
 - [Hans Pagel](https://github.com/hanspagel)
 - [Kris Siepert](https://github.com/kriskbx)
 - [All Contributors](../../contributors)
 
 ## License
-
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
