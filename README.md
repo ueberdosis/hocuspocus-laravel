@@ -121,7 +121,6 @@ server.listen()
 ```
 
 ## Credits
-- [Hans Pagel](https://github.com/hanspagel)
 - [Kris Siepert](https://github.com/kriskbx)
 - [All Contributors](../../contributors)
 
